@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="CMNS"
+  id="myeclipse.1497171462894"
+  context-root="/CMNS"
+  j2ee-spec="5.0"
+  archive="CMNS.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

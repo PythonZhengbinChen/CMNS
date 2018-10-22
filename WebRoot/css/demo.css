@@ -1,0 +1,482 @@
+@font-face {
+  font-family: 'adv';
+  src: url("./fonts/adventor-bold.eot");
+  src: url("./fonts/adventor-bold.eot?#iefix") format('embedded-opentype'), url("./fonts/adventor-bold.woff") format('woff'), url("./fonts/adventor-bold.ttf") format('truetype'), url("./fonts/adventor-bold.svg#texgyreadventorbold") format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+::-moz-selection {
+  background: #444;
+  color: #fff;
+  text-shadow: none;
+}
+::selection {
+  background: #444;
+  color: #fff;
+  text-shadow: none;
+}
+a {
+  color: #333;
+}
+li {
+  list-style: none;
+}
+html {
+  font-size: 10px;
+  min-width: 300px;
+}
+body {
+  border-top: 4px solid #333;
+  background-color: #fff;
+  color: #454545;
+  margin: 0 auto;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+}
+.logo {
+  font-family: 'adv', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: inline-block;
+  font-size: 11rem;
+  background-color: #222;
+  color: #eee;
+  padding: 0rem 2rem;
+  margin-top: 2rem;
+  letter-spacing: -0.5rem;
+  line-height: 2;
+  width: 50%;
+  min-width: 530px;
+  white-space: nowrap;
+  -webkit-transition: background-color 0.2s, color 0.2s;
+  -moz-transition: background-color 0.2s, color 0.2s;
+  -o-transition: background-color 0.2s, color 0.2s;
+  -ms-transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
+}
+.logo em {
+  font-style: normal;
+}
+.logo sup {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 6rem;
+  font-weight: 100;
+  letter-spacing: -0.9rem;
+}
+.logo:hover .oridomi-content {
+  background-color: #ff4e49;
+  background-color: #ff4e4e;
+  background-color: #eee;
+  color: #ddd;
+}
+header {
+  overflow: hidden;
+}
+header h2 {
+  margin: 2.2rem 0;
+  font-size: 3.4rem;
+  letter-spacing: -0.1rem;
+  font-weight: 200;
+}
+header h5 {
+  font-size: 1.8rem;
+  line-height: 1;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+header a {
+  text-decoration: none;
+  color: #aaa;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.2rem;
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  -o-transition: color 0.3s;
+  -ms-transition: color 0.3s;
+  transition: color 0.3s;
+}
+header a:hover {
+  color: #777;
+}
+header .button {
+  margin-bottom: 1rem;
+}
+#menu {
+  position: fixed;
+  text-align: left;
+  line-height: 1.8;
+  position: fixed;
+  font-size: 1.4rem;
+  top: 2rem;
+  padding: 1rem;
+  font-weight: bold;
+}
+#menu li {
+  display: block;
+}
+#menu li ul {
+  font-size: 0.9em;
+  text-indent: 1rem;
+}
+#menu a {
+  text-decoration: none;
+  color: #bbb;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  -ms-transition: color 0.2s;
+  transition: color 0.2s;
+}
+#menu a:hover {
+  color: #777;
+}
+.button {
+  background-color: #444;
+  display: inline-block;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 0.8rem;
+  cursor: pointer;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: background-color 0.2s, color 0.2s;
+  -moz-transition: background-color 0.2s, color 0.2s;
+  -o-transition: background-color 0.2s, color 0.2s;
+  -ms-transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
+  text-decoration: none;
+  position: relative;
+  top: 0.2rem;
+}
+.button:hover {
+  background-color: #ddd;
+  color: #666;
+}
+.button:active {
+  top: 0.3rem;
+}
+.warning {
+  width: 480px;
+  font-size: 16px;
+  padding: 40px;
+  margin: 40px auto;
+  border: 1px dashed #ff5a7e;
+  line-height: 1.5;
+}
+#unsupported {
+  display: none;
+}
+section {
+  margin: 2rem 0;
+  padding: 2rem;
+  overflow: hidden;
+}
+section h1 {
+  font-size: 4rem;
+  line-height: 2;
+  font-family: 'adv', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+p,
+pre {
+  max-width: 65rem;
+  margin: 2rem auto;
+  text-align: left;
+}
+p {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  font-size: 2.2rem;
+  line-height: 1.5;
+}
+p a {
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px dotted #ddd;
+}
+p a:hover {
+  color: #bbb;
+}
+p code {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0.3rem;
+  font-size: 1.6rem;
+}
+pre {
+  background-color: #f8f8f8;
+  color: #555;
+  padding: 1rem;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 1.6rem;
+  padding: 0 2rem;
+  overflow: scroll;
+}
+code {
+  padding: 0;
+  line-height: 1.4;
+}
+#demos {
+  margin-top: 0;
+}
+#demos li {
+  display: block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 2rem;
+  margin-bottom: 4rem;
+}
+#demos > h2,
+#demos > h3 {
+  color: #aaa;
+  font-size: 3.4rem;
+  font-weight: 200;
+}
+#demos > h2 {
+  padding: 2rem;
+}
+#demos > h2 a {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px dotted #ddd;
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  -o-transition: color 0.3s;
+  -ms-transition: color 0.3s;
+  transition: color 0.3s;
+}
+#demos > h2 a:hover {
+  color: #333;
+}
+#demos > h3 {
+  font-style: italic;
+  max-width: 48rem;
+  font-size: 2rem;
+  margin: 0 auto;
+}
+.demo {
+  display: block;
+  max-width: 80rem;
+  width: 100%;
+  min-width: 320px;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+.note {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: #999;
+  text-align: center;
+  max-width: 40rem;
+}
+.label {
+  background-color: #f8f8f8;
+  color: #999;
+  font-family: monospace;
+  display: inline-block;
+  padding: 1rem;
+  font-size: 1.3rem;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  width: 20rem;
+  position: relative;
+}
+.demo1 {
+  font-family: 'adv', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  height: 30rem;
+  color: #fff;
+  background-image: url("./images/road.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  font-size: 9rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: -0.3rem;
+  line-height: 1;
+  text-align: center;
+  padding-top: 4rem;
+}
+.demo1 p {
+  text-transform: none;
+  font-size: 4rem;
+  background-color: #333;
+  display: inline-block;
+  padding: 0.8rem;
+  font-family: 'adv', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  letter-spacing: 0;
+  pointer-events: none;
+}
+.demo2 {
+  font-family: 'Abril Fatface', 'Hoefler Text', Constantia, Palatino, Georgia, serif;
+  color: #333;
+  background-color: #eee;
+  font-size: 6rem;
+  line-height: 0.9;
+  padding: 6rem 0;
+  font-weight: normal;
+  max-width: 50rem;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  -ms-transition: color 0.2s;
+  transition: color 0.2s;
+}
+.demo2 h3 {
+  font-weight: normal;
+}
+.demo2:hover .oridomi-content {
+  color: #e2bb7c;
+}
+.demo3 {
+  text-transform: uppercase;
+  background-color: #444;
+  border: 1.5rem solid #e2bb7c;
+  color: #e2bb7c;
+  font-size: 6rem;
+  padding: 2rem;
+}
+.demo3 h3 {
+  font-weight: 100;
+}
+.demo4 {
+  background-image: url("./images/horse.gif");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  height: 28rem;
+  font-size: 5rem;
+  font-family: Futura;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: -0.2rem;
+  line-height: 5;
+}
+.demo5 {
+  background-image: url("./images/suit.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  height: 40rem;
+}
+.demo6 {
+  background-color: #00bbdf;
+  max-width: 57rem;
+  -webkit-transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
+  -o-transition: background-color 0.2s;
+  -ms-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+.demo6 pre {
+  font-size: 1.2rem;
+  background: none;
+  color: #fff;
+  font-weight: bold;
+  overflow: hidden;
+  font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
+}
+.demo6:hover .oridomi-content {
+  background-color: #aa2861;
+}
+.demo7 {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-image: url("./images/lbj.jpg");
+  width: 221%;
+  height: 40rem;
+}
+#features ul {
+  font-size: 1.8rem;
+  color: #999;
+  max-width: 65rem;
+  margin: 0 auto;
+}
+#features li {
+  width: 40%;
+  display: inline-block;
+  line-height: 2;
+  white-space: nowrap;
+  font-style: italic;
+}
+#features li:nth-child(odd) {
+  text-align: right;
+  margin-right: 4rem;
+}
+#features li:nth-child(even) {
+  text-align: left;
+  margin-left: 4rem;
+}
+#usage h2 {
+  font-size: 3rem;
+  margin-top: 5rem;
+  font-family: 'adv', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+#initialization {
+  margin-top: 2rem !important;
+}
+footer {
+  padding: 3rem;
+  font-size: 1.5rem;
+  color: #bbb;
+}
+footer a {
+  color: #bbb;
+  text-decoration: none;
+  border-bottom: 1px solid #bbb;
+}
+@media only screen and (max-width: 900px), only screen and (max-device-width: 480px) {
+  html {
+    font-size: 9px;
+  }
+  .logo {
+    width: 100%;
+    font-size: 9rem;
+  }
+  .demo {
+    width: 90%;
+  }
+  #features li {
+    font-size: 1.7rem;
+    width: 100%;
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+}
+@media only screen and (max-width: 780px) {
+  #menu {
+    display: none;
+  }
+}
+@media only screen and (max-device-width: 480px) {
+  .oridomi-content {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+  }
+}
+@media only screen and (min-width: 970px) {
+  #demos li {
+    width: 35%;
+    display: inline-block;
+  }
+}

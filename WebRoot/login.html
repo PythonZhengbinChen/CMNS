@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>燕山大学E校园电子地图平台</title>
+<link rel="shortcut icon" href="./img/favicon.png" type="image/png">
+<link rel="stylesheet" type="text/css" href="./css/login.css">
+<style type="text/css">
+body,td,th { font-family: "Source Sans Pro", sans-serif; }
+body { background-color: #2B2B2B; }
+</style>
+</head>
+<body>
+
+<div class="ysuLogo">
+	<img src="./img/ysuTip.png" width="25%" style="margin: 1.5% 0 0 2%;">
+</div>
+<div class="wrapper">
+
+	<div class="container">
+		<h1>Welcome Login YSU-CMNS</h1>
+		<form class="form">
+			<input type="text" id="adminName" placeholder="Username">
+			<input type="password" id="adminPassword" placeholder="Password">
+			<button type="button" id="login-button">Login</button>
+		</form>
+	</div>
+	
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	
+</div>
+
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript">
+$("#login-button").click(function(event){
+	event.preventDefault();
+	$('form').fadeOut(500);
+	$('.wrapper').addClass('form-success');
+	
+	var adminName = $("#adminName").val();
+		var adminPassword = $("#adminPassword").val();
+		
+		if(adminName == "") {
+			$("#adminName").css("border","1px solid red");
+			return;
+		}
+		if(adminPassword == "") {
+			$("#adminPassword").css("border","1px solid red");
+			return;
+		}
+		
+		$.ajax({
+			url: "/CMNS/adminLoginCheck.do",
+			async: false,
+			type: "POST",
+			data: {
+				adminName: adminName,
+				adminPassword: adminPassword
+			},
+			dataType: "html",
+			success: function(data) {
+				if(data == "success") {
+					window.location.href = "activityList.html";
+				} else if(data == "密码错误"){
+					$("#adminPassword").css("border","1px solid red");
+				} else {
+					alert(data);
+				}
+			},
+			error: function(data) {
+				alert("登录失败！");
+			}
+		});
+});
+
+/**
+*管理员登入页面
+*@author: ZhengbinChen
+*@time: 2018年5月7日11点08分
+*/
+</script>
+
+</body>
+</html>

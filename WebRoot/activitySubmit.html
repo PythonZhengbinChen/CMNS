@@ -1,0 +1,207 @@
+<!DOCTYPE html "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>燕山大学E校园电子地图平台</title>
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="./css/activitySubmit.css">
+</head>
+<body>
+    <div class="header">
+    	<a href="index.html" class="navbar-brand logo"><img src="./img/ysuTip.png"  style="margin: 0.7% 0 0 1%;" width="20%"></a>
+    </div>
+    <center>
+    <div class="activityTip">校园活动信息</div>
+    <ul id="activityInfo">
+        <li class="inputList first">
+            <h3>活动主题</h3>
+            <p>
+                <input type="text" placeholder="请输入活动主题" id="activityTheme" name="activityTheme" /></p>
+        </li>
+        <li class="inputList">
+            <h3>活动日期</h3>
+            <p>
+                <input type="text" id="activityTime" onfocus="scheduleshow()" placeholder="请输入活动时间" name="activityTime"  />
+                <div id='schedule-box' class="boxshaw">
+                </div>
+                </p>
+        </li>
+        <li class="inputList">
+            <h3>活动详细时间</h3>
+            <p>
+                <input type="text" id="activityParticularTime"  placeholder="请输入详细的活动时间" name="activityParticularTime"  />
+                </p>
+        </li>
+        <li class="inputList">
+            <h3>活动地点</h3>
+            <p>
+                <input type="text" class="placeSearchInput" id="activityPlace" placeholder="请输入活动地点" name="activityPlace" />
+                <input type="hidden" id="activityBuildingId" name="activityBuildingId" />
+                <div class="searchContent">
+						<ul>
+						</ul>
+					</div>
+            </p>
+        </li>
+        <li class="inputList">
+            <h3>主办单位</h3>
+            <p>
+                <input type="text" id="activityDepartment" placeholder="请输入主办单位" name="activityDepartment"  /></p>
+        </li>
+        <li class="inputList">
+            <h3>联系邮箱</h3>
+            <p>
+                <input type="text" id="contactEmail" placeholder="请输入联系邮箱(*审核通过通知)" name="contactEmail"  /></p>
+        </li>
+        <li class="inputList">
+            <h3>原文详情链接</h3>
+            <p>
+                <input type="text" id="url" placeholder="请输入原文详情链接" name="url"  />
+                </p>
+        </li>
+        <li class="last" id="signup">
+            提   交
+        </li>
+    </ul>
+    </center>
+</body>
+	
+	<script src='./js/jquery.js'></script>
+    <script src="./js/schedule.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#signup").click(function() {
+                resetFields();
+                var emptyfields = $("input");
+                for(var i=0;i < emptyfields.length;i++) {
+                	if($(emptyfields[i]).val() == "" && $(emptyfields[i]).attr("name") != "url") {
+                		$(emptyfields[i]).stop()
+                            .animate({ left: "-10px" }, 100).animate({ left: "10px" }, 100)
+                            .animate({ left: "-10px" }, 100).animate({ left: "10px" }, 100)
+                            .animate({ left: "0px" }, 100)
+                            .addClass("required");
+                	}
+                }
+                
+                if($("#activityTheme").val() != "" && $("#activityTime").val() != "" 
+                && $("#activityParticularTime").val() != "" && $("#activityPlace").val() != "" 
+                && $("#activityBuildingId").val() != "" && $("#activityDepartment").val() != "" && $("#contactEmail").val() != "") {
+                	$.ajax({
+						url: '/CMNS/setActivityBeanInfo.do',
+						type: 'POST',
+						dataType: 'json',
+						data: {
+							activityTheme: $("#activityTheme").val(),
+							activityTime: $("#activityTime").val(),
+							activityParticularTime: $("#activityParticularTime").val(),
+							activityPlace: $("#activityPlace").val(),
+							activityBuildingId: $("#activityBuildingId").val(),
+							activityDepartment: $("#activityDepartment").val(),
+							contactEmail: $("#contactEmail").val(),
+							url: $("#url").val()
+						},
+						success:function(){
+							alert("提交成功！我们将会在三个工作日之前给"+$("#contactEmail").val()+"邮箱发送审核反馈。");
+							window.location.href = "/CMNS/index.html";
+						},
+						error: function() {
+							alert("提交成功！我们将会在三个工作日之前给"+$("#contactEmail").val()+"邮箱发送审核反馈。");
+							window.location.href = "/CMNS/index.html";
+						}
+					});
+                }
+                
+            });
+        });
+        function resetFields() {
+            $("input[type=text], input[type=password]").removeClass("required");
+        }
+    </script>
+    <script>
+    var mySchedule = new Schedule({
+        el: '#schedule-box',
+        //date: '2018-9-20',
+        clickCb: function (y,m,d) {
+        	m = (m.toString())[1] ? m : '0'+m;
+			d = (d.toString())[1] ? d : '0'+d;
+            $('#activityTime').val(y+'-'+m+'-'+d);
+            $("#schedule-box").hide(1000);
+        },
+        nextMonthCb: function (y,m,d) {
+        	m = (m.toString())[1] ? m : '0'+m;
+			d = (d.toString())[1] ? d : '0'+d;
+            $('#activityTime').val(y+'-'+m+'-'+d);
+        },
+        nextYeayCb: function (y,m,d) {
+        	m = (m.toString())[1] ? m : '0'+m;
+			d = (d.toString())[1] ? d : '0'+d;
+            $('#activityTime').val(y+'-'+m+'-'+d);
+        },
+        prevMonthCb: function (y,m,d) {
+        	m = (m.toString())[1] ? m : '0'+m;
+			d = (d.toString())[1] ? d : '0'+d;
+            $('#activityTime').val(y+'-'+m+'-'+d);
+        },
+        prevYearCb: function (y,m,d) {
+        	m = (m.toString())[1] ? m : '0'+m;
+			d = (d.toString())[1] ? d : '0'+d;
+            $('#activityTime').val(y+'-'+m+'-'+d);
+        }
+    });
+
+    function scheduleshow() {
+        $("#schedule-box").show(1000);
+    }
+    function scheduleclose() {
+        $("#schedule-box").hide(1000);
+    }
+    
+    
+    /**
+	 * 这是用于输入框模糊匹配的方法
+	 */
+	$(".placeSearchInput").bind('input propertychange',function() {
+		$(".searchContent").show(1000);
+		var index = $(".placeSearchInput").index(this)
+		var keyString = $(".placeSearchInput").eq(index).val();
+		$.ajax({
+			url: '/CMNS/getNoteSearchList.do',
+			type: 'POST',
+			dataType: 'json',
+			data: {keyString: keyString},
+			success:function(search_result){
+				$(".searchContent ul").html("");
+				if(search_result.length == 0) {
+					$(".searchContent ul").append("请输入正确的地点！");
+				}
+				for(var i = 0; i < search_result.length ; i++) {
+					var str = '<li index="'+index+'" id="'+search_result[i].vertexId+'">'
+					+'<img src="./img/searchLi.png"><div class="seachLiName" id="">'
+					+search_result[i].searchName+'</div></li>';
+					$(".searchContent ul").append(str);
+				}
+				//$("#search_response").html(JSON.stringify(search_result));
+			}
+		});
+	});  
+	/**
+	 * 地点选择填充输入框
+	 */
+	$(".searchContent ul").on("click","li",function() {
+		var index = $(this).attr("index");
+		var id = $(this).attr("id");
+		var nameObj = $(this).children()[1];
+		var name = $(nameObj).html();
+		if(index == 0) {
+			$("#activityBuildingId").val(id);
+			$(".placeSearchInput").eq(index).val(name);
+			$(".searchContent").hide(1000);
+		}
+	});
+/**
+*活动申请页面
+*@author: ZhengbinChen
+*@time: 2018年5月7日11点08分
+*/
+</script>
+</html>

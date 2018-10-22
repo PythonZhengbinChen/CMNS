@@ -1,0 +1,907 @@
+/**
+*导航地图的首页样式
+*@author: ZhengbinChen
+*@time: 2018年5月7日11点08分
+*/
+@charset "utf-8";
+*{
+	padding: 0;
+	margin: 0;
+	/*background-color: red;*/
+}
+img,image{
+	font-size: 0;
+	border:none;
+	vertical-align:top;
+}
+body, html{
+	height:100%;
+	width:100%;
+	overflow: hidden;
+	background:#ececec;
+	/*去掉默认的滚轮*/
+}
+input, button{
+	outline:none;
+	border:none;
+}
+i{
+	font-style: normal;
+}
+label:hover {
+	cursor:pointer;
+}
+.wrapper{
+	width:100%;
+	height:100%;
+	position: relative;
+}
+.header{
+	position: relative;
+	height: 100px;
+	background: url('../img/header.png') no-repeat;
+	background-size: cover;
+	z-index: 1000;
+}
+.header .head_wrapper {
+	position: absolute;
+	top:32px;
+	right:17%;
+	width:255px;
+	height:35px;
+	background-color: #00a7e9;
+}
+.header input {
+	width:200px;
+	height:35px;
+	padding-left:5px;
+	color:#a0a0a0;
+}
+.header span{
+	display:inline-block;
+	width:40px;
+	text-align: center;
+	color:#fff;
+	background-color: #00a7e9;
+	cursor:pointer;
+}
+
+.left {
+	position: absolute;
+	top:0px;
+	left:0px;
+	width:55px;
+	height:100%;
+	font-size: 12px;
+	background: #ececec;
+	background-size: cover;
+	z-index:100;
+}
+.left .ysuLogo {
+	width: 90%;
+	margin: 20px 0 0 3px;
+}
+.left .nav{
+	position: absolute;
+	top:210px;
+	left:0;
+	width:100%;
+	height:300px;
+	color:#fff;
+}
+.nav li{
+	list-style: none;
+	width:55px;
+	/*
+	height:60px;
+	*/
+	padding: 3px 0;
+	cursor:pointer;
+}
+.nav li:hover{
+	background-color: #fff;
+}
+.nav .icon{
+	display:block;
+	width: 100%;
+}
+.nav img {
+	width: 32px;
+	height: 32px;
+	margin: 0px 11px;
+}
+.nav span{
+	display: block;
+	width: 100%;
+	text-align: center;
+	color: #1A4F80;
+	font-weight: bold;
+}
+
+.right {
+	position:absolute;
+	/*left:50px;*/
+	left:-300px;
+	width:350px;
+	height:100%;
+	background-color: #fff;
+	border-right:1px solid #a0a0a0;
+	z-index: 50;
+	background-color: #fcfcfc;
+}
+.right .target {
+	position: absolute;
+	top:35%;
+	left:350px;
+	width:20px;
+	height:70px;
+	background-color: #fff;
+	border:1px solid #a0a0a0;
+	cursor: pointer;
+	display: none;
+}
+
+.right .rightBox {
+	display: none;
+}
+.target .turn_left{
+	display:none;
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-top: -4.5px;
+	margin-left: -2.5px; 
+}
+.target .turn_right{
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-top: -4.5px;
+	margin-left: -2.5px; 
+	transform:rotate(180deg);
+}
+.right .contain{
+	position: absolute;
+	width:320px;
+	height:100%;
+	margin:15px;
+	font-size: 16px;
+}
+.contain .logo{
+	width:320px;
+	height:120px;
+	border-bottom: 1px solid #a0a0a0;
+	text-align: center;
+}
+.logo img{
+	margin:10px 70px;
+}
+.logo span{
+	display: block;
+	text-align: center;
+}
+
+.placeSearch {
+	width: 320px;
+	margin-top: 10px;
+	overflow: hidden;
+    border: 1px solid #3385ff;
+}
+
+.placeSearch input {
+	width: 230px;
+    box-sizing: border-box;
+    border: 0;
+    padding: 9px 5px;
+    border-left: 10px solid transparent;
+    line-height: 20px;
+    font-size: 16px;
+    height: 38px;
+    color: #333;
+    position: relative;
+    border-radius: 2px 0 0 2px;
+    float: left;
+}
+
+.placeSearch .lineBtnBox {
+	float: left;
+	width: 38px;
+	height: 38px;
+	background: url(../img/line.png);
+	background-size: 60%;
+	background-position: 7px 7px;
+	background-repeat: no-repeat;
+	border-left: 1px solid #999;
+	border-right: 1px solid #fff;
+}
+
+
+.placeSearch .searchBtnBox,.lineSearchBtnBox {
+    float: left;
+    width: 50px;
+    height: 38px;
+    background-image: url("../img/searchBtn.png");
+    background-color: #3385ff;
+    background-size: 50%;
+    background-position: 15px 5px;
+    background-repeat: no-repeat;
+}
+
+.placeSearch .lineBtnBox:hover {
+	cursor: pointer;
+	background: url(../img/lineHover.png);
+	background-color: #3385ff;
+	background-size: 60%;
+	background-position: 7px 7px;
+    background-repeat: no-repeat;
+}
+
+.placeSearch .searchBtnBox:hover ,.lineSearchBtnBox:hover{
+	cursor: pointer;
+	background-color: #2e77e5;
+}
+
+.lineSearch {
+	width: 320px;
+	background-color: #fff;
+	display: none;
+}
+
+.lineSearchTitle {
+	width: 230px;
+    box-sizing: border-box;
+    border: 0;
+    padding: 9px 5px;
+    border-left: 10px solid transparent;
+    line-height: 20px;
+    font-size: 16px;
+    height: 38px;
+    color: #333;
+    position: relative;
+    border-radius: 2px 0 0 2px;
+    float: left;
+    border-bottom: 1px solid #3385ff;
+}
+
+.lineSearchTitle img {
+	margin: -10px 0 0 -10px;
+}
+
+.lineSearchTop{
+	width: 320px;
+	margin-top: 10px;
+	overflow: hidden;
+}
+
+.lineBtnBoxClose {
+	float: left;
+	width: 38px;
+	height: 38px;
+	background: url(../img/lineClose.png);
+	background-size: 45%;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	border-left: 1px solid #3385ff;
+	border-top: 1px solid #3385ff;
+}
+
+.lineBtnBoxClose:hover {
+	cursor: pointer;
+}
+
+.fromToBox {
+	width: 268px;
+	overflow: hidden;
+	display: none;
+}
+
+.fromToBox .fromToBoxPic {
+    width: 40px;
+    height: 80px;
+    background-image: url("../img/fromTo.png");
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 10px 25px;
+    float: left;
+}
+
+.fromToBox i {
+	width: 220px;
+	float: right;
+	overflow: hidden;
+}
+
+.fromToBox i img {
+	margin-top: 13px;
+}
+
+.fromToBox i input{
+	width: 200px;
+    box-sizing: border-box;
+    border: 0;
+    padding: 9px 5px;
+    border-left: 10px solid transparent;
+    line-height: 20px;
+    font-size: 16px;
+    height: 38px;
+    color: #333;
+    position: relative;
+    border-radius: 2px 0 0 2px;
+}
+
+.searchContent {
+	width: 320px;
+	max-height: 480px;
+	overflow-y: auto;
+	margin-top: 10px;
+	background-color: #fff;
+	display: none;
+}
+
+.searchContent ul {
+	list-style: none;
+}
+#departmentListContent {
+	margin-top: 15px;
+	max-height: 280px;
+	overflow-y: auto;
+}
+#lifeListContent {
+	margin-top: 10px;
+	max-height: 160px;
+	overflow-y: auto;
+}
+#learnListContent {
+	margin-top: 10px;
+	max-height: 380px;
+	overflow-y: auto;
+}
+.searchContent li,.categoryListContent ul li {
+    list-style: none;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 1px dashed #999;
+    margin-top: 3px;
+}
+.searchContent li:hover,.categoryListContent ul li:hover {
+	background-color: #e6e6e6;
+}
+
+.searchContent li img ,.categoryListContent ul li img{
+	width: 15px;
+	height: 15px;
+	padding: 10px;
+	float: left; 
+}
+.seachLiName {
+	width: 200px;
+	float: left;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+.campusName {
+	float: right;
+	font-size: 12px;
+	color: #999;
+}
+
+
+
+/**校园活动**/
+.activityBox ,.propagandaBox {
+	padding: 10px;
+	width: 300px;
+	max-height: 500px;
+	overflow-y: auto;
+}
+.activityBox ul li {
+    width: 100%;
+    padding-bottom: 60px;
+	cursor: pointer;
+}
+.activityBox ul a {
+    font-size: 14px;
+    text-align: right;
+    text-decoration: none;
+    color: #666;
+    margin-top: -10px;
+}
+.activityBox ul a:hover {
+	color: red;
+}
+.xsdt-txt:hover {
+	background-color: rgba(204,204,204,0.3);
+	border-radius: 5px;
+}
+
+.xsdt-date {
+    width: 60px;
+    height: 66px;
+    background: #ededed;
+    float: left;
+    position: relative;
+    margin-right: -60px;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+.xsdt-date h3 {
+    display: block;
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    float: left;
+    background: #0954a0;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+}
+
+.xsdt-date span {
+    display: block;
+    float: left;
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    color: #0954a0;
+    font-size: 12px;
+    text-align: center;
+}
+
+.xsdt-txt {
+    width: 100%;
+    float: right;
+}
+
+.xsdt-txt-1 {
+    margin-left: 75px;
+}
+
+.xsdt-txt-1 h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    color: #333;
+    font-weight: normal;
+    font-size: 14px;
+    display: block;
+    float: left;
+}
+
+.xsdt-txt-1 p {
+    color: #666;
+    font-size: 12px;
+    line-height: 20px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    display: block;
+    width: 100%;
+}
+
+.xsdt-txt-1 p {
+    color: #666;
+    font-size: 12px;
+    line-height: 20px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    display: block;
+    width: 100%;
+}
+
+#activityPublish {
+	text-align: left;
+	margin: 15px 0 0 10px;;
+}
+#activityPublish a {
+    text-decoration-line: none;
+    font-size: 14px;
+    color:#0954a0;
+}
+
+/***宣传**/
+.propagandaBox ul li{
+	float: left;
+	width: 90px;
+	list-style: none;
+	position: relative;
+	padding: 0 5px 0 5;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+
+.propagandaBox ul li img {
+	width: 100%;
+}
+
+.propagandaBox ul li div{
+	position: absolute;
+	bottom: 0px;
+	padding: 3px 0;
+	text-align: center;
+	width: 90px;
+	background-color: rgba(0,0,0,0.5);
+	color: #fff;
+	font-size: 12px;
+}
+
+.universityViewTooltip {
+	z-index: 1000;
+	width: 800px;
+	height: 500px;
+	position: absolute;
+	top: 10%;
+	left: 35%;
+	background-color: #fff;
+	display: none;
+	overflow: hidden;
+	padding-bottom: 40px;
+}
+
+.universityViewTooltip .VRContent {
+	
+}
+#u_u6_imgcontent a {
+	font-size: 9pt;
+    color: #222222;
+    line-height: 150%;
+    text-decoration: none;
+}
+#vsb_content,#u_u6_imgcontent {
+	padding-top: 20px;
+	height: 440px;
+	overflow-y: auto;
+	text-align: center;
+	color: #333;
+    font-size: 16px;
+    line-height: 30px;
+    text-indent: 2em;
+}
+
+.universityViewTooltip .loading {
+	width: 100%;
+	height: 100%;
+	font-size: 30px;
+	text-align: center;
+	line-height: 370px;
+}
+
+
+.load-wrapp {
+    width: 100%;
+	height: 100%;
+    text-align: center;
+    background-color: #fcfcfc;
+}
+.load-4 {
+	padding-top: 28%;
+}
+.load-4 .ring-1 {animation: loadingD 1.5s .3s cubic-bezier(.17,.37,.43,.67) infinite;}
+
+.ring-1 {
+    width: 10px;
+    height: 10px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 7px dashed #4b9cdb;
+    border-radius: 100%;
+}
+
+@keyframes loadingD {
+    0 {transform: rotate(0deg);}
+    50% {transform: rotate(180deg);}
+    100% {transform: rotate(360deg);}
+}
+
+
+/*校园风光*/
+
+
+
+
+
+
+/*联系我们*/
+.title {
+	font-size: 20px;
+    text-align: center;
+    padding: 10px 0;
+}
+.introduceWe {
+	font-size: 14px;
+	line-height: 24px;
+	padding: 0 10px;
+	padding-bottom: 10px;
+	text-indent: 30px;
+	border-bottom: 1px solid #999;
+}
+.contactPosition {
+	margin-top: 20px;s
+}
+.contactMain {
+	padding: 3px 5px;
+	margin-left: 20px;
+}
+.contactMain img {
+	width: 20px;
+}
+.contactMain span {
+	font-size: 14px;
+    margin-left: 8px;
+}
+.contactCode {
+	margin-left: 40px;
+}
+.contactCode img {
+	width: 45%;
+}
+.contactCode div {
+	font-size: 12px;
+	color: #999;
+}
+/**/
+
+
+
+.content{
+	position: absolute;
+	top:-108px;
+	left:-130px;
+	display:inline-block;
+	/*background: url('../img/map.png') no-repeat;*/
+	background-color: #ccc;
+	background-size: cover;
+	overflow: hidden;
+	z-index: 10;
+	padding: 100px 0 0 120px;
+}
+/*
+#content:hover {
+	cursor: url('./zoom.ico'),auto;
+}
+*/
+.svg_wrapper{
+	/*transform-origin: 50% 50%;   */
+}
+.outer>path:hover{
+	stroke:#ff00ff;
+	stroke-width:20px;
+}
+
+
+
+.building_path:hover {
+	cursor: pointer;
+	fill-opacity: 1;
+	stroke-opacity: 1;	
+}
+
+
+.tooltip{
+	position: relative;
+    font-size:16px;  
+    width:400px;  
+    height:auto;  
+    position:absolute;   
+    text-align:center;  
+    border-style:solid;  
+    border-width:1px;  
+    background-color:white;    
+}  
+
+.tooltipNav {
+	overflow: hidden;
+	width: 100%;
+	height: 40px;
+	background-color: #1296db;
+}
+
+.tooltipNav .titleLogo{
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+}
+
+
+.tooltipNavTitle {
+	position: absolute;
+	font-family: '楷体';
+	font-weight: bold;
+	font-size: 22px;
+	color: #FFF;
+	left: 5px;
+	top: 10px;
+	text-align: left;
+}
+
+
+.tooltipNavImg {
+	width: 20px;
+	height: 20px;
+	padding: 5px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: block;
+}
+
+.tooltipNavImg:hover {
+	cursor: pointer;
+}
+
+
+
+.tooltipContent {
+	padding: 8px;
+	text-align: left;
+	font-size: 14px;
+	overflow-y: auto;
+}
+
+.tooltipContentPicAddrDiv {
+	position: relative;
+	width: 100%;
+	height: 130px;
+	overflow: hidden;
+	padding-bottom: 8px;
+	border-bottom: 1px dashed #666;
+}
+
+.tooltipContentPic {
+	width: 60%;
+	float: left
+}
+.tooltipContentPic img{
+	width: 100%;
+	height: 100%;
+}
+.tooltipContentAddr {
+	position: absolute;
+	width: 38%;
+	bottom: 8px; right: 0px;
+}
+.buildingIntroduce {
+	border-bottom: 1px dashed #666;
+}
+.department {
+	text-align: left;;
+} 
+
+.departmentList {
+	padding-left: 15px;
+	max-height: 150px;
+	overflow-y: auto
+}
+
+.introduce {
+	display: none;
+	padding: 3px;
+	border: 1px solid #666;
+}
+
+.chooseDiv {
+	padding: 5px;
+	width: 116px;
+	border: 1px solid  #999;
+	float: left;
+	text-align: center;
+	background-color: #fcfcfc;
+	cursor: pointer;
+}
+
+.footerDivChoose {
+	overflow: hidden;
+	margin-top: 5px;
+}
+
+.choosable {
+	background-color: #fff;
+	cursor: default;
+	border-bottom: 1px solid #fff;
+} 
+
+.tooltipSearchDiv {
+	width: 382px;
+	padding: 10px 0 5px 0;
+	border-left: 1px solid #999; 
+	border-right: 1px solid #999; 
+	border-bottom: 1px solid #999; 
+}
+
+.driveInput {
+	width: 300px;
+	height: 30px;
+	padding: 5px;
+	border:  1px solid  #999;
+}
+
+
+.tooltipSearchBtn {
+	width: 80px;
+	height: 30px;
+	padding: 5px;
+	background-color: #1296db;
+	color: #fff;
+	float: right;
+}
+
+.tooltipSearchBtn:hover {
+	cursor: pointer;
+}
+
+/*tooltip搜索结果*/
+.tooltipSearchDivContent {
+	width: 382px;
+	max-height: 100px;
+	overflow-y: auto;
+	margin-top: 10px;
+	background-color: #fff;
+}
+
+.tooltipSearchDivContent ul {
+	list-style: none;
+}
+
+.tooltipSearchDivContent li {
+    list-style: none;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 1px dashed #999;
+    margin-top: 3px;
+}
+.tooltipSearchDivContent li:hover {
+	background-color: #e6e6e6;
+}
+
+.tooltipSearchDivContent li img {
+	width: 15px;
+	height: 15px;
+	padding: 10px;
+	float: left; 
+}
+/*tooltip周边*/
+.nearbyDiv {
+	width: 382px;
+	max-height: 125px;
+	overflow-y: auto;
+	margin-top: 10px;
+	background-color: #fff;
+	display: none;
+}
+
+.nearbyDiv .list-head ul li {
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    width: 74px;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    margin-left: 5px;
+    
+}
+
+

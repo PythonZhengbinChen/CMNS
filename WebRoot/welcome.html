@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="ZN-CN">
+	<meta charset="utf-8">
+	<title>燕山大学E校园电子地图平台</title>
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/png">
+	<link rel="stylesheet" type="text/css" href="./css/welcome.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+</head>
+<body>
+	<div class="containerDiv containerDiv1">
+		
+		<div class="conotainerRight interactive-slider-v2">
+			<div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-1 promo-info">
+                              <span class="welcomeSpan" style="color: #fff;">欢迎访问</span><br/>
+						<h1 style="color: #fff;"><strong>燕山大学 <span class="Espan">E</span> 校园电子地图平台</strong></h1>
+                              <p style="padding: 10px; background-color: rgba(255,255,255,0.7); border-radius: 8px; color: #222;"><strong><span style="font-family: 'Forte'; padding: 3px;">E</span>校园电子地图</strong> 是一款基于燕山大学彩绘地图的校园综合服务类平台，平台以彩绘地图为背景，涵盖校园导航、在校学习生活、校园活动、校园文化、校园宣传等功能，方便在校师生、职工和校外访客进行学习、生活以及参观访问使用。</p>
+                              <a id="href" href="index.html" class="btn-u btn-banner btn-apple"><i class="fa-2x glyphicon glyphicon-log-in"></i> 立即进入</a>
+                              <span class="btn-u btn-banner btn-android"><i class="fa-2x glyphicon glyphicon-time"></i> <span>等待<b id="wait">8</b>秒自动跳转</span></span>
+                         </div>
+		</div>
+		
+	</div>
+
+	<div class="footer">
+			<div class="copyright">
+               <div class="container">
+                    <div class="row">
+                         <div class="col-md-8 col-sm-8 col-xs-8">
+                              <div class="cr-left">
+                                   <p>© 2018 All right reserved. Development by <span style="font-family: 'Forte'; padding: 3px;">E</span>校通工作室 
+                                   </p>
+                              </div>
+                         </div>
+                         <div class="col-md-4 col-sm-4 col-xs-4">
+                              <div class="cr-right">
+                                   <span><i class="glyphicon glyphicon-envelope"></i> zhengbinchen2016@163.com </span>| <span><i class="glyphicon glyphicon-phone-alt"></i> 15603317662 </span>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+		</div>
+
+	<script type="text/javascript">                            
+			(function() {
+						var wait = document.getElementById('wait'), href = document.getElementById('href').href;
+						var interval = setInterval(function() {
+							var time = --wait.innerHTML;
+							if (time <= 0) {
+								
+								clearInterval(interval);
+								location.href = href;
+								//alert("开始跳转提示");
+							}
+							;
+						}, 1000);
+					})();
+	</script>
+</body>
+</html>

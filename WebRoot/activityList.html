@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="csrf-token" content="adXiG5Qo4yrddNsRNK5yRkX8aDBCWjd781w8icK2"/>
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/png">
+
+    <title>燕山大学E校园电子地图平台</title>
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+	<link href="./css/jPages.css" rel="stylesheet">
+  	<link href="./css/animate.css" rel="stylesheet">
+  	<style type="text/css">
+  		.member_info {
+  			margin-top: 60px;
+  			min-height: 550px;
+  			width: 100%;
+  		}
+  		.member_info table {
+  			border-radius: 3px;
+  			text-align: center;
+  		}
+  		.viewBtn:hover, .deleteBtn:hover {
+  			cursor: pointer;
+  		}
+  		.holder {
+		    padding: 3px 0;
+		    background: #fff;
+		    border-radius: 3px;
+		    text-align: center;
+		}
+		.logo {
+			font-size: 22px;
+			color: #1f296a;
+		}
+		#logo_title img {
+			padding: 0;
+			margin: 0;
+			margin-top: -10px;
+		}
+		#updateModal, #removeModal {
+			background-color: #fff;
+		}
+		.control-group {
+		    margin-top: 15px;
+		    overflow: hidden;
+		}
+		#updateModal label {
+			width: 10%;
+		    float: left;
+		    text-align: right;
+		}
+		.control {
+		    float: left;
+		    margin-left: 55px;
+		    width: 80%;
+		}
+		.control input{
+			    display: block;
+			    width: 100%;
+			    height: 34px;
+			    padding: 6px 12px;
+			    font-size: 14px;
+			    line-height: 1.42857143;
+			    color: #555;
+			    background-color: #fff;
+			    background-image: none;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+			    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+			    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+			    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+			    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+		}
+		#isPass {
+			float: left;
+		    margin-left: 55px;
+			width: 10%;
+		}
+		#main_list td {
+			padding: 8px 2px;
+		}
+		.auditing {
+
+		}
+  	</style>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="">
+		<div class="navbar-header pull-left" style="width: 80%;">
+			<a href="index.html" class="navbar-brand logo"><span id="logo_title"><img src="./img/ysu.png" width="10%"></span> E校园电子地图平台</a>
+			
+		</div>
+		<div class="pull-right" style="margin-right: 1%; margin-top: 0.5%;">
+			<a href="/CMNS/adminQuit.do"><span class="btn btn-default">退出</span></a>
+		</div>
+	</div>
+</nav>
+
+<div class="">
+
+	<div class="container member_info">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>活动编号</th>
+					<th>活动主题</th>
+					<th>提交时间</th>
+					<th>活动时间</th>
+					<th>活动地点</th>
+					<th>主办单位</th>
+					<th>是否审核</th>
+					<th>查看</th>
+					<th>删除</th>
+				</tr>
+			</thead>
+			<tbody id="main_list">
+				<!--
+				<tr>
+					<td>2018042309535520180501</td>
+					<td>学术报告 《浅谈半导体芯片科技与发展，暨国内外职业发展经历分享》</td>
+					<td>2018-04-17</td>
+					<td>2018-04-19</td>
+					<td hidden="hidden">2018年4月19日（周四）14:30</td>
+					<td>东校区四教109</td>
+					<td hidden="hidden">1000000252</td>
+					<td>信息科学与工程学院</td>
+					<td hidden="hidden">360522450@qq.com</td>
+					<td hidden="hidden">http://ysu.edu.cn/info/1096/4860.htm</td>
+					<td>未审核</td>
+					<td hidden="hidden">0</td>
+					<td class="viewBtn"><a href="#updateModal" role="button" data-toggle="modal"  onclick="shorParcularInfo(this)" class="glyphicon glyphicon-eye-open"></a></td>
+					<td class="deleteBtn"><span class="glyphicon glyphicon-trash"></span></td>
+				</tr>
+				-->
+				
+			</tbody>
+		</table>
+		<div class="holder"></div>
+	</div>
+
+	<div class="signup-footer">
+        <div class="text-center">
+                &copy; Copyright © 2018, YSU-CMNS All Rights Reserved.
+        </div>
+    </div>	
+</div>
+
+<div id="updateModal" class="modal fade container" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			&times;
+		</button>
+		<h3 id="updateModalLabel"><label  class="glyphicon glyphicon-bullhorn"></label> 活动信息详情</h3>
+	</div>
+	<div class="modal-body" style="overflow: hidden;">
+		<form id ="updateMember_form" class="form-horizontal"  method="get" action="/QHD-Ant/updateMemberInfo.do">
+			<div class="control-group form-inline has-feedback" >
+				<label class="control-label" for="name">活动编号: </label>
+				<div class="control" id="activityId">
+					
+				</div>
+			</div>
+			<div class="control-group  form-inline has-feedback">
+				<label class="control-label" for="sex">活动主题: </label>
+				<div class="control">
+					<input type="text"  name="acitvityTheme" id="acitvityTheme" placeholder="活动主题">
+				</div>
+			</div>
+			<div class="control-group  form-inline has-feedback">
+				<label class="control-label" for="phone">发布时间: </label>
+				<div class="control">
+					<input type="text" name="publishTime" id="publishTime" placeholder="发布时间">
+				</div>
+			</div>
+			<div class="control-group form-inline has-feedback">
+				<label class="control-label" for="identity">活动时间: </label>
+				<div class="control">
+					<input type="text" name="activityTime" id="activityTime" placeholder="活动时间">
+				</div>
+			</div>
+			<div class="control-group form-inline has-feedback">
+				<label class="control-label" for="site">活动详细时间: </label>
+				<div class="control">
+					<input type="text" name="activityPacularTime" id="activityPacularTime" placeholder="活动详细时间">
+				</div>
+			</div>
+			<div class="control-group form-inline has-feedback">
+				<label class="control-label" for="activitys">活动地点: </label>
+				<div class="control">
+					<input type="text" id="activityPlace" placeholder="活动地点">
+				</div>
+			</div>
+			<div class="control-group form-inline has-feedback">
+				<label class="control-label" for="activitys">建筑id: </label>
+				<div class="control">
+					<input type="text" id="activityBuildingId" placeholder="建筑id">
+				</div>
+			</div>
+			<div class="control-group form-inline has-feedback">
+				<label class="control-label" for="activitys">主办单位: </label>
+				<div class="control">
+					<input type="text" id="activityDepartment" placeholder="主办单位">
+				</div>
+			</div>
+			<div class="control-group form-inline has-feedback">
+				<label class="control-label" for="activitys">联系邮箱: </label>
+				<div class="control">
+					<input type="text" id="activityContactEmail" placeholder="联系邮箱">
+				</div>
+			</div>
+			<div class="control-group form-inline has-feedback">
+				<label class="control-label" for="activitys">原文链接: </label>
+				<div class="control">
+					<input type="text" id="activityURL" placeholder="原文链接">
+				</div>
+			</div>
+			<div class="control-group form-inline has-feedback">
+				<label class="control-label" for="activitys">是否审核: </label>
+				<div id="isPass">
+					
+				</div>
+				<span id="activityFlag" hidden="hidden"></span>
+				<div class="auditing">
+					<a href="#" id="auditingPass" onclick="auditingPassOrDispass(1)" class="btn btn-primary">审核通过</a>
+					<a href="#" id="auditingDispass" onclick="auditingPassOrDispass(2)" class="btn btn-danger">审核不通过</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		
+		<a href="#" class="btn btn-danger" class="close" onclick='window.location.href = "activityList.html"' data-dismiss="modal" aria-hidden="true">关闭</a>
+		<a href="#" id="update_btn" onclick="updateActivity()" class="btn btn-primary">更新</a>
+	</div>
+</div>
+
+<div id=removeModal class="modal fade container" style="height: 250px;margin-top: 15%" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			&times;
+		</button>
+		<h3 id="removeModalLabel"><label  class="glyphicon glyphicon-question-sign"></label> 系统提示</h3>
+	</div>
+	<div class="modal-body" style="overflow: hidden; text-align: center; padding: 30px;">
+		<h3 style="">是否删除主题为:<span id="memberInfo" identity="" style="color:red;"></span>的活动信息？</h3>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-danger" class="close" data-dismiss="modal" aria-hidden="true">取消</a>
+		<a href="#" id="remove_btn" onclick="removeMemberInfo()" class="btn btn-primary">确认</a>
+	</div>
+</div>
+
+<div id="tab_div">
+</div>
+
+
+<script src="./js/jquery.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/jPages.min.js"></script>
+<script src="./js/jpage-main.js"></script>
+<script type="text/javascript">
+	function getMemberList() {
+		$.ajax({
+			url: "/CMNS/getAllActivityBeanList.do",
+			async: false,
+			type: "post",
+			dataType: "json",
+			success: function(data) {
+				$(".member_info table tbody").html("");
+				for(var i=0;i<data.length;i++){
+					var activityFlag = data[i].activityFlag;
+					var auditing;
+					if(activityFlag == 0) {
+						auditing = "未审核";
+					} else if(activityFlag == 1) {
+						auditing = "通过";
+					} else {
+						auditing = "不通过";
+					}
+					var str = '<tr>'
+					+'<td>'+data[i].activityId+'</td>'
+					+'<td>'+data[i].activityTheme+'</td>'
+					+'<td>'+data[i].publishTime+'</td>'
+					+'<td>'+data[i].activityTime+'</td>'
+					+'<td hidden="hidden">'+data[i].activityParticularTime+'</td>'
+					+'<td>'+data[i].activityPlace+'</td>'
+					+'<td hidden="hidden">'+data[i].activityBuildingId+'</td>'
+					+'<td>'+data[i].activityDepartment+'</td>'
+					+'<td hidden="hidden">'+data[i].contactEmail+'</td>'
+					+'<td hidden="hidden">'+data[i].url+'</td>'
+					+'<td>'+auditing+'</td>'
+					+'<td hidden="hidden">'+activityFlag+'</td>'
+					+'<td class="viewBtn"><a href="#updateModal" role="button" data-toggle="modal"  onclick="showParcularInfo(this)" class="glyphicon glyphicon-eye-open"></a></td>'
+					+'<td class="deleteBtn"><a href="#removeModal" role="button" data-toggle="modal"  onclick="removeMember(this)" class="glyphicon glyphicon-trash"></a></td>'
+				+'</tr>';
+					$(".member_info table tbody").append(str);
+					str = "";
+				}
+			}
+		});
+		jpage_main();
+	}
+	
+	
+	
+	function showParcularInfo(event) {
+		var root = $(event).parent().parent();
+		var activityId = $(root).children().eq(0).html();
+		var acitvityTheme = $(root).children().eq(1).html();
+		var publishTime = $(root).children().eq(2).html();
+		var activityTime = $(root).children().eq(3).html();
+		var activityPacularTime = $(root).children().eq(4).html();
+		var activityPlace = $(root).children().eq(5).html();
+		var activityBuildingId = $(root).children().eq(6).html();
+		var activityDepartment = $(root).children().eq(7).html();
+		var activityContactEmail = $(root).children().eq(8).html();
+		var activityURL = $(root).children().eq(9).html();
+		var isPass = $(root).children().eq(11).html();
+		
+		$("#activityId").html(activityId);
+		$("#acitvityTheme").val(acitvityTheme);
+		$("#publishTime").val(publishTime);
+		$("#activityTime").val(activityTime);
+		$("#activityPacularTime").val(activityPacularTime);
+		$("#activityPlace").val(activityPlace);
+		$("#activityBuildingId").val(activityBuildingId);
+		$("#activityDepartment").val(activityDepartment);
+		$("#activityContactEmail").val(activityContactEmail);
+		$("#activityURL").val(activityURL);
+		$("#activityFlag").html(isPass);
+		if(isPass == 0) {
+			$("#isPass").html('<span class="btn btn-default">未审核</span>');
+			$(".auditing").css("display","block");
+		} else if(isPass == 1){
+			$("#isPass").html('<span class="btn btn-success">通过</span>');
+			$(".auditing").css("display","none");
+		} else {
+			$("#isPass").html('<span class="btn btn-danger">不通过</span>');
+			$(".auditing").css("display","none");
+		}
+		
+	}
+	
+	function updateActivity() {
+		var activityId = $("#activityId").html();
+		var acitvityTheme = $("#acitvityTheme").val();
+		var publishTime = $("#publishTime").val();
+		var activityTime = $("#activityTime").val();
+		var activityPacularTime = $("#activityPacularTime").val();
+		var activityPlace = $("#activityPlace").val();
+		var activityBuildingId = $("#activityBuildingId").val();
+		var activityDepartment = $("#activityDepartment").val();
+		var activityContactEmail = $("#activityContactEmail").val();
+		var activityURL = $("#activityURL").val();
+		var activityFlag = $("#activityFlag").html();
+		if(acitvityTheme != "" && activityTime != "" 
+                && activityPlace != "" && activityDepartment != "" 
+                && activityContactEmail != "" && activityBuildingId != "" && activityFlag != "") {
+                	$.ajax({
+						url: '/CMNS/updateActivityBeanInfo.do',
+						type: 'POST',
+						dataType: 'json',
+						data: {
+							activityId: activityId,
+							activityTheme: acitvityTheme,
+							publishTime: publishTime,
+							activityTime: activityTime,
+							activityParticularTime: activityPacularTime,
+							activityPlace: activityPlace,
+							activityBuildingId: activityBuildingId,
+							activityDepartment: activityDepartment,
+							contactEmail: activityContactEmail,
+							url: activityURL,
+							activityFlag: activityFlag
+						},
+						success:function(){
+						console.log("sc");
+							//alert("更新成功！");
+							//window.location.href = "/CMNS/activityList.html";
+						},
+						error: function() {
+						console.log("er");
+							//alert("更新成功！");
+							//window.location.href = "/CMNS/activityList.html";
+						}
+					});
+                }
+		
+	}
+	
+	function removeMember(event) {
+		var root = $(event).parent().parent();
+		var activityId = $(root).children().eq(0).html();
+		var acitvityTheme = $(root).children().eq(1).html();
+		var publishTime = $(root).children().eq(2).html();
+		var activityTime = $(root).children().eq(3).html();
+		var activityPacularTime = $(root).children().eq(4).html();
+		var activityPlace = $(root).children().eq(5).html();
+		var activityBuildingId = $(root).children().eq(6).html();
+		var activityDepartment = $(root).children().eq(7).html();
+		var activityContactEmail = $(root).children().eq(8).html();
+		var activityURL = $(root).children().eq(9).html();
+		var isPass = $(root).children().eq(11).html();
+		
+		$("#memberInfo").html(acitvityTheme);
+		$("#memberInfo").attr("activityId",activityId);
+	}
+	function removeMemberInfo() {
+		var activityId = $("#memberInfo").attr("activityId");
+		
+		$.ajax({
+			url: "/CMNS/deleteActivityBeanInfo.do",
+			async: false,
+			type: "POST",
+			data: {
+				activityId: activityId
+			},
+			dataType: "html",
+			success: function() {
+				alert("删除成功！");
+				window.location.href = "activityList.html";
+				$("#removeModal").modal("hide");
+			},
+			error: function() {
+				alert("删除失败！");
+				window.location.href = "activityList.html";
+				$("#removeModal").modal("hide");
+			}
+		});
+	}
+	
+	function auditingPassOrDispass(flag) {
+		var activityId = $("#activityId").html();
+		var acitvityTheme = $("#acitvityTheme").val();
+		var activityContactEmail = $("#activityContactEmail").val();
+		var activityDepartment = $("#activityDepartment").val();
+		$.ajax({
+			url: "/CMNS/auditingPassOrDispassEvent.do",
+			async: false,
+			type: "POST",
+			data: {
+				activityId: activityId,
+				activityFlag: flag,
+				contactEmail: activityContactEmail,
+				activityDepartment: activityDepartment,
+				acitvityTheme: acitvityTheme
+			},
+			dataType: "html",
+			success: function() {
+				alert("审核成功！");
+				if(flag == 0) {
+					$("#isPass").html('<span class="btn btn-default">未审核</span>');
+					$(".auditing").css("display","block");
+				} else if(flag == 1){
+					$("#isPass").html('<span class="btn btn-success">通过</span>');
+					$(".auditing").css("display","none");
+				} else {
+					$("#isPass").html('<span class="btn btn-danger">不通过</span>');
+					$(".auditing").css("display","none");
+				}
+			},
+			error: function(data) {
+				alert("审核失败！");
+			}
+		});
+	}
+	
+	function loginCheck() {
+		$.ajax({
+			url: "/CMNS/checkAdminSession.do",
+			async: false,
+			type: "POST",
+			dataType: "html",
+			success: function(data) {
+				if(data == "false") {
+					window.location.href = "login.html";
+				}
+			},
+			error: function(data) {
+				alert("登录失败！");
+			}
+		});
+	}
+	
+
+</script>
+
+<script type="text/javascript">
+	function showTab(e,_this) {
+		var info = $(_this).children().children("input").val();
+		var e = e||window.event;
+		var pointX = e.clientX+document.body.scrollLeft + document.documentElement.scrollLeft;
+		var pointY = e.clientY+document.body.scrollTop + document.documentElement.scrollTop;
+		$("#tab_div").html(info);
+		$("#tab_div").css({"position":"absolute","left": pointX,"top":pointY});
+		if(info != "") {
+			$("#tab_div").show();
+		}
+	}
+	
+	function hideTab(e) {
+		$("#tab_div").hide();
+	}
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		loginCheck();
+		//jpage_main();
+		getMemberList();
+	});
+	
+	
+/**
+*管理员管理活动信息后台，主要对申请的活动进行审核和修改
+*@author: ZhengbinChen
+*@time: 2018年5月7日11点08分
+*/
+</script>
+</body>
+</html>
